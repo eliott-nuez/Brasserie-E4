@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Brasserie.iml" filepath="$PROJECT_DIR$/Brasserie.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Brasserie.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Brasserie.app.iml" />
+    </modules>
+  </component>
+</project>

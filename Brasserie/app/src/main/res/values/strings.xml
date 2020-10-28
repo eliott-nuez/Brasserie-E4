@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Brasserie</string>
+    <string name="identifiant">Identifiant</string>
+    <string name="connexion">Connexion</string>
+    <string name="choix_du_restaurant">Choix du restaurant :</string>
+    <string name="valider">Valider</string>
+    <string name="assignation_des_tables">Assignation des tables</string>
+    <string name="prise_de_commande">Prise de commande</string>
+    <string name="d_connexion">Déconnexion</string>
+    <string name="retour_aux_choix_du_restaurant">Retour aux choix du restaurant</string>
+    <string name="choix_de_la_table">Choix de la table :</string>
+    <string name="annuler">Annuler</string>
+    <string name="password">Password</string>
+    <string name="login">Login :</string>
+    <string name="pswd">Password :</string>
+    <string name="choix_de_la_chambre">Choix de la chambre :</string>
+    <string name="choix_du_service">Choix du service :</string>
+    <string name="suivi_commande">Suivi commande</string>
+    <string name="connexion_title">Connexion :</string>
+    <string name="pseudo">Pseudo</string>
+    <string name="se_connecter">Se connecter</string>
+    <string name="til_password">til_password</string>
+    <string name="til_pseudo">til_pseudo</string>
+    <string name="retour">Retour</string>
+</resources>
