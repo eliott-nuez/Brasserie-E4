@@ -2,8 +2,8 @@
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 28 oct. 2020 à 11:26
+-- Hote : 127.0.0.1:3306
+-- Genere le :  mar. 24 nov. 2020 a 03:03
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.2.18
 
@@ -18,15 +18,70 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
--- Base de données :  `borabora`
---
 
--- --------------------------------------------------------
 
---
--- Structure de la table `brasserie`
---
+CREATE TABLE IF NOT EXISTS restaurant (
+  `id_restaurant` int(3) NOT NULL,
+  `nom_restaurant` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id_restaurant`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `restaurant` (`id_restaurant`, `nom_restaurant`) VALUES
+(1, 'brasserie'),
+(2, 'brasserie2');
+
+
+
+CREATE TABLE IF NOT EXISTS tableBrasserie (
+  `num_table` int(3) NOT NULL,
+  PRIMARY KEY (`num_table`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `tableBrasserie` (`num_table`) VALUES
+(1),
+(2),
+(3);
+
+CREATE TABLE IF NOT EXISTS tableBrasserie2 (
+  `num_table` int(3) NOT NULL,
+  PRIMARY KEY (`num_table`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+INSERT INTO `tableBrasserie2` (`num_table`) VALUES
+(1),
+(2),
+(3);
+
+CREATE TABLE IF NOT EXISTS `serviceBrasserie` (
+  `id_service` varchar(20) NOT NULL,
+  PRIMARY KEY (`id_service`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+INSERT INTO `serviceBrasserie` (`id_service`) VALUES
+('midi 1'),
+('midi 2'),
+('soir 1'),
+('soir 2');
+
+CREATE TABLE IF NOT EXISTS `serviceBrasserie2` (
+  `id_service` varchar(20) NOT NULL,
+  PRIMARY KEY (`id_service`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+INSERT INTO `serviceBrasserie2` (`id_service`) VALUES
+('midi 1'),
+('midi 2'),
+('soir 1'),
+('soir 2');
+
 
 DROP TABLE IF EXISTS `brasserie`;
 CREATE TABLE IF NOT EXISTS `brasserie` (
@@ -38,62 +93,77 @@ CREATE TABLE IF NOT EXISTS `brasserie` (
   KEY `brasserie_ibfk_1` (`cat`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `brasserie`
---
+
 
 INSERT INTO `brasserie` (`num_plat`, `lib_plat`, `prix_plat`, `cat`) VALUES
 (1, 'Salade Tahitienne', 2050, 'ENTSAL'),
-(2, 'Os à la Moelle au sel de Guérande', 1500, 'ENTSAL'),
-(3, 'Salade Tiède au Jarret', 2050, 'ENTSAL'),
-(4, 'Tartine au Chèvre Chaud sur Salade', 1750, 'ENTSAL'),
+(2, 'Os a la Moelle au sel de Guerande', 1500, 'ENTSAL'),
+(3, 'Salade Tiede au Jarret', 2050, 'ENTSAL'),
+(4, 'Tartine au Chevre Chaud sur Salade', 1750, 'ENTSAL'),
 (5, 'Salade Jean Pierre', 2050, 'ENTSAL'),
 (6, 'Salade Verte huile olive ou vinaigrette', 800, 'ENTSAL'),
 (7, 'Salade Verta Roquefort et Noix', 950, 'ENTSAL'),
-(8, 'Crevettes poelées et flambées', 2950, 'CREPAY'),
-(9, 'Crevettes poelées au Curry et amandes', 2950, 'CREPAY'),
-(10, 'Tartare de Thon à la moutarde et Garniture', 2450, 'PROMER'),
+(8, 'Crevettes poelees et flambees', 2950, 'CREPAY'),
+(9, 'Crevettes poelees au Curry et amandes', 2950, 'CREPAY'),
+(10, 'Tartare de Thon a la moutarde et Garniture', 2450, 'PROMER'),
 (11, 'Steack de Thon mi-cuit sauce vierge Fruits frais e', 2850, 'PROMER'),
-(12, 'Noix d\'Entrecôte 200g', 2850, 'VIANDE'),
-(13, 'Noix d\'Entrecôte 350g', 3750, 'VIANDE'),
+(12, 'Noix dEntrecote 200g', 2850, 'VIANDE'),
+(13, 'Noix dEntrecote 350g', 3750, 'VIANDE'),
 (14, 'La Churascaia 500g', 5100, 'VIANDE'),
 (15, 'Travers de Porc Sauce Barbecue', 3150, 'VIANDE'),
 (16, 'Escalope de Veau Normande', 2650, 'VIANDE'),
-(17, 'Os à la Moelle en accompagnement', 500, 'VIANDE'),
+(17, 'Os a la Moelle en accompagnement', 500, 'VIANDE'),
 (18, 'Tartare de Boeuf aux Condiments', 2650, 'VIANDE'),
 (19, 'Sauce au choix', 300, 'VIANDE'),
-(20, 'Hamburger pur Boeuf Frites à Volonté', 2050, 'HAMBUR'),
+(20, 'Hamburger pur Boeuf Frites a Volonte', 2050, 'HAMBUR'),
 (21, 'Tagliatelle Carbonara', 1700, 'PATES'),
 (22, 'Tagliatelle au Saumon', 2800, 'PATES'),
-(23, 'Tagliatelle Crevttes Décortiquées', 2800, 'PATES'),
-(24, 'Flammekueche Formule à Volonté', 2050, 'FLAMME'),
+(23, 'Tagliatelle Crevttes Decortiquees', 2800, 'PATES'),
+(24, 'Flammekueche Formule a Volonte', 2050, 'FLAMME'),
 (25, 'La Classique', 1200, 'FLAMME'),
-(26, 'La Forestière', 1350, 'FLAMME'),
-(27, 'La Gratinée', 1350, 'FLAMME'),
-(28, 'La Spéciale', 1500, 'FLAMME'),
-(29, 'La Chèvre Chaud', 1600, 'FLAMME'),
+(26, 'La Forestiere', 1350, 'FLAMME'),
+(27, 'La Gratinee', 1350, 'FLAMME'),
+(28, 'La Speciale', 1500, 'FLAMME'),
+(29, 'La Chevre Chaud', 1600, 'FLAMME'),
 (30, 'La Choucroute', 1750, 'FLAMME'),
 (31, 'La Napolitaine', 1450, 'FLAMME'),
 (32, 'La Saumon', 1800, 'FLAMME'),
-(33, 'La Végétarienne', 1500, 'FLAMME'),
+(33, 'La Vegetarienne', 1500, 'FLAMME'),
 (34, 'La Crevette', 1950, 'FLAMME'),
 (35, 'Les Trois Fromages', 1700, 'FLAMME'),
-(36, 'La Charcutière', 1800, 'FLAMME'),
+(36, 'La Charcutiere', 1800, 'FLAMME'),
 (37, 'La Pomme', 950, 'FLAMME'),
-(38, 'La Pomme Glacée', 1200, 'FLAMME'),
-(39, 'La Belle Hélène', 1150, 'FLAMME'),
-(40, 'La Ch\'ti', 1200, 'FLAMME'),
+(38, 'La Pomme Glacee', 1200, 'FLAMME'),
+(39, 'La Belle Helene', 1150, 'FLAMME'),
+(40, 'La Chti', 1200, 'FLAMME'),
 (41, 'La Normande', 1200, 'FLAMME'),
 (42, 'La Cococ', 1600, 'FLAMME'),
-(43, 'La Spéciale Sucrée', 1100, 'FLAMME'),
+(43, 'La Speciale Sucree', 1100, 'FLAMME'),
 (44, 'La Tout Chocolat', 1100, 'FLAMME'),
 (45, 'La Martiniquaise', 1200, 'FLAMME');
 
--- --------------------------------------------------------
 
---
--- Structure de la table `cat_brasserie`
---
+
+
+DROP TABLE IF EXISTS `brasserie2`;
+CREATE TABLE IF NOT EXISTS `brasserie2` (
+  `num_plat` int(3) NOT NULL,
+  `lib_plat` varchar(50) DEFAULT NULL,
+  `prix_plat` float DEFAULT NULL,
+  `cat` varchar(6) DEFAULT NULL,
+  PRIMARY KEY (`num_plat`),
+  KEY `brasserie2_ibfk_1` (`cat`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+
+INSERT INTO `brasserie2` (`num_plat`, `lib_plat`, `prix_plat`, `cat`) VALUES
+(1, 'Entree brasserie2', 2050, 'ENTSAL'),
+(2, 'La brasserie2', 1200, 'FLAMME');
+
+
 
 DROP TABLE IF EXISTS `cat_brasserie`;
 CREATE TABLE IF NOT EXISTS `cat_brasserie` (
@@ -102,24 +172,21 @@ CREATE TABLE IF NOT EXISTS `cat_brasserie` (
   PRIMARY KEY (`cat`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `cat_brasserie`
---
+
+
+
 
 INSERT INTO `cat_brasserie` (`cat`, `lib_cat`) VALUES
 ('CREPAY', 'Crevette Pays'),
-('ENTSAL', 'Entrées, Salades'),
+('ENTSAL', 'Entrees, Salades'),
 ('FLAMME', 'Flammekueche '),
 ('HAMBUR', 'Hamburger'),
 ('PATES', 'Les Pâtes'),
 ('PROMER', 'Produits de la Mer'),
 ('VIANDE', 'Les Viandes');
 
--- --------------------------------------------------------
 
---
--- Structure de la table `cat_chambre`
---
+
 
 DROP TABLE IF EXISTS `cat_chambre`;
 CREATE TABLE IF NOT EXISTS `cat_chambre` (
@@ -128,9 +195,8 @@ CREATE TABLE IF NOT EXISTS `cat_chambre` (
   PRIMARY KEY (`cat`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `cat_chambre`
---
+
+
 
 INSERT INTO `cat_chambre` (`cat`, `lib_cat`) VALUES
 ('1', 'Chambre Classique'),
@@ -138,11 +204,9 @@ INSERT INTO `cat_chambre` (`cat`, `lib_cat`) VALUES
 ('3', 'Bungalow sur le lagon'),
 ('4', 'Bungalow jardin');
 
--- --------------------------------------------------------
 
---
--- Structure de la table `cat_cons`
---
+
+
 
 DROP TABLE IF EXISTS `cat_cons`;
 CREATE TABLE IF NOT EXISTS `cat_cons` (
@@ -151,33 +215,29 @@ CREATE TABLE IF NOT EXISTS `cat_cons` (
   PRIMARY KEY (`cat`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `cat_cons`
---
+
+
+
 
 INSERT INTO `cat_cons` (`cat`, `lib_cat`) VALUES
 ('ALCOOL', 'Alcool'),
-('APEBIE', 'Apéritif à la bière'),
-('APERIT', 'Apéritif'),
-('BIEAMB', 'Bière ambrée'),
-('BIEBLA', 'Bière blanche'),
-('BIEBLO', 'Bière blonde'),
-('BIESCO', 'Bière scotch'),
-('BIESPE', 'Bière spéciale'),
-('COKBIE', 'Apéritif à la bière'),
+('APEBIE', 'Aperitif a la biere'),
+('APERIT', 'Aperitif'),
+('BIEAMB', 'Biere ambree'),
+('BIEBLA', 'Biere blanche'),
+('BIEBLO', 'Biere blonde'),
+('BIESCO', 'Biere scotch'),
+('BIESPE', 'Biere speciale'),
+('COKBIE', 'Aperitif a la biere'),
 ('COKTAI', 'Coktail'),
-('EAUMIN', 'Eaux minérales'),
+('EAUMIN', 'Eaux minerales'),
 ('JUSFRA', 'Jus de fruits frais'),
 ('LACAVE', 'La cave'),
 ('NECTAR', 'Nectars'),
 ('SODAS', 'Sodas'),
 ('WHISKY', 'Whisky');
 
--- --------------------------------------------------------
 
---
--- Structure de la table `cat_spa`
---
 
 DROP TABLE IF EXISTS `cat_spa`;
 CREATE TABLE IF NOT EXISTS `cat_spa` (
@@ -186,9 +246,8 @@ CREATE TABLE IF NOT EXISTS `cat_spa` (
   PRIMARY KEY (`cat`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `cat_spa`
---
+
+
 
 INSERT INTO `cat_spa` (`cat`, `lib_cat`) VALUES
 ('1', '30min'),
@@ -196,11 +255,8 @@ INSERT INTO `cat_spa` (`cat`, `lib_cat`) VALUES
 ('3', '1h30'),
 ('4', '2h');
 
--- --------------------------------------------------------
 
---
--- Structure de la table `chambre`
---
+
 
 DROP TABLE IF EXISTS `chambre`;
 CREATE TABLE IF NOT EXISTS `chambre` (
@@ -212,9 +268,8 @@ CREATE TABLE IF NOT EXISTS `chambre` (
   KEY `cat` (`cat`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `chambre`
---
+
+
 
 INSERT INTO `chambre` (`num_chambre`, `lib_chambre`, `prix_chambre`, `cat`) VALUES
 (1, 'Chambre Classique', 17000, '1'),
@@ -226,11 +281,7 @@ INSERT INTO `chambre` (`num_chambre`, `lib_chambre`, `prix_chambre`, `cat`) VALU
 (7, 'Bungalow jardin', 26000, '4'),
 (8, 'Bungalow jardin', 26000, '4');
 
--- --------------------------------------------------------
 
---
--- Structure de la table `client`
---
 
 DROP TABLE IF EXISTS `client`;
 CREATE TABLE IF NOT EXISTS `client` (
@@ -241,20 +292,16 @@ CREATE TABLE IF NOT EXISTS `client` (
   PRIMARY KEY (`Id_Client`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `client`
---
+
+
 
 INSERT INTO `client` (`Id_Client`, `Nom`, `Prenom`, `Tel`) VALUES
 (1, 'nuez', 'eliott', '951083'),
 (2, 'Devellennes', 'Ludovic', '930111'),
 (3, 'Bernard', 'Lorenzo', '522205');
 
--- --------------------------------------------------------
 
---
--- Structure de la table `comprend_bar`
---
+
 
 DROP TABLE IF EXISTS `comprend_bar`;
 CREATE TABLE IF NOT EXISTS `comprend_bar` (
@@ -266,20 +313,16 @@ CREATE TABLE IF NOT EXISTS `comprend_bar` (
   KEY `fk1_comprend_bar` (`num_cons`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `comprend_bar`
---
+
 
 INSERT INTO `comprend_bar` (`num_fact`, `num_cons`, `qte`, `date`) VALUES
 (1, 114, 1, '2020-06-24 00:00:00'),
 (2, 10, 1, '2020-06-19 00:00:00'),
 (4, 76, 2, '2020-07-02 00:00:00');
 
--- --------------------------------------------------------
 
---
--- Structure de la table `comprend_brasserie`
---
+
+
 
 DROP TABLE IF EXISTS `comprend_brasserie`;
 CREATE TABLE IF NOT EXISTS `comprend_brasserie` (
@@ -287,30 +330,44 @@ CREATE TABLE IF NOT EXISTS `comprend_brasserie` (
   `num_plat` int(3) NOT NULL,
   `qte` tinyint(4) DEFAULT NULL,
   `date` datetime NOT NULL,
-  PRIMARY KEY (`num_fact`,`num_plat`,`date`) USING BTREE,
-  KEY `comprend_brasseriefk_1` (`num_plat`)
+  `id_service` varchar(20) NOT NULL,
+  `num_table` int(3) NOT NULL,
+  PRIMARY KEY (`num_fact`,`num_plat`,`date`,`id_service`,`num_table`) USING BTREE,
+  KEY `comprend_brasseriefk_1` (`num_plat`),
+  KEY `comprend_brasseriefk_2` (`id_service`),
+  KEY `comprend_brasseriefk_3` (`num_table`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `comprend_brasserie`
---
 
-INSERT INTO `comprend_brasserie` (`num_fact`, `num_plat`, `qte`, `date`) VALUES
-(1, 20, 1, '2020-06-23 00:00:00'),
-(1, 20, 1, '2020-06-24 00:00:00'),
-(1, 24, 2, '2020-06-23 00:00:00'),
-(1, 24, 1, '2020-06-23 16:32:55'),
-(2, 43, 2, '2020-06-19 00:00:00'),
-(3, 20, 1, '2020-06-22 00:00:00'),
-(3, 24, 1, '2020-06-22 00:00:00'),
-(4, 21, 1, '2020-07-01 20:00:00'),
-(4, 22, 1, '2020-07-01 20:00:00');
 
--- --------------------------------------------------------
 
---
--- Structure de la table `comprend_chambre`
---
+INSERT INTO `comprend_brasserie` (`num_fact`, `num_plat`, `qte`, `date`,`id_service`,`num_table`) VALUES
+(1, 20, 1, '2020-06-23 00:00:00', 'midi 1', 1),
+(1, 20, 1, '2020-06-24 00:00:00', 'midi 2', 1),
+(1, 24, 2, '2020-06-23 00:00:00', 'midi 2', 1),
+(1, 24, 1, '2020-06-23 16:32:55', 'soir 1', 1),
+(2, 43, 2, '2020-06-19 00:00:00', 'soir 1', 2),
+(3, 20, 1, '2020-06-22 00:00:00', 'midi 1', 3),
+(3, 24, 1, '2020-06-22 00:00:00', 'soir 2', 3),
+(4, 21, 1, '2020-07-01 20:00:00', 'midi 1', 1),
+(4, 22, 1, '2020-07-01 20:00:00', 'midi 1', 1);
+
+
+DROP TABLE IF EXISTS `comprend_brasserie2`;
+CREATE TABLE IF NOT EXISTS `comprend_brasserie2` (
+  `num_fact` int(11) NOT NULL,
+  `num_plat` int(3) NOT NULL,
+  `qte` tinyint(4) DEFAULT NULL,
+  `date` datetime NOT NULL,
+  `id_service` varchar(20) NOT NULL,
+  `num_table` int(3) NOT NULL,
+  PRIMARY KEY (`num_fact`,`num_plat`,`date`,`id_service`,`num_table`) USING BTREE,
+  KEY `comprend_brasserie2fk_1` (`num_plat`),
+  KEY `comprend_brasserie2fk_2` (`id_service`),
+  KEY `comprend_brasserie2fk_3` (`num_table`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 
 DROP TABLE IF EXISTS `comprend_chambre`;
 CREATE TABLE IF NOT EXISTS `comprend_chambre` (
@@ -322,9 +379,8 @@ CREATE TABLE IF NOT EXISTS `comprend_chambre` (
   KEY `num_chambre` (`num_chambre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `comprend_chambre`
---
+
+
 
 INSERT INTO `comprend_chambre` (`num_fact`, `num_chambre`, `datea`, `dateb`) VALUES
 (1, 5, '2020-06-20', '2020-06-24'),
@@ -332,11 +388,7 @@ INSERT INTO `comprend_chambre` (`num_fact`, `num_chambre`, `datea`, `dateb`) VAL
 (3, 8, '2020-06-19', '2020-06-24'),
 (4, 5, '2020-06-30', '2020-07-03');
 
--- --------------------------------------------------------
 
---
--- Structure de la table `comprend_spa`
---
 
 DROP TABLE IF EXISTS `comprend_spa`;
 CREATE TABLE IF NOT EXISTS `comprend_spa` (
@@ -348,9 +400,8 @@ CREATE TABLE IF NOT EXISTS `comprend_spa` (
   KEY `num_soin` (`num_soin`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `comprend_spa`
---
+
+
 
 INSERT INTO `comprend_spa` (`num_fact`, `num_soin`, `date`, `qte`) VALUES
 (1, 1, '2020-06-24 00:00:00', 1),
@@ -358,11 +409,7 @@ INSERT INTO `comprend_spa` (`num_fact`, `num_soin`, `date`, `qte`) VALUES
 (3, 8, '2020-06-21 00:00:00', 1),
 (4, 10, '2020-07-01 00:00:00', 1);
 
--- --------------------------------------------------------
 
---
--- Structure de la table `consommation`
---
 
 DROP TABLE IF EXISTS `consommation`;
 CREATE TABLE IF NOT EXISTS `consommation` (
@@ -374,9 +421,8 @@ CREATE TABLE IF NOT EXISTS `consommation` (
   KEY `consommation_ibfk_1` (`cat`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `consommation`
---
+
+
 
 INSERT INTO `consommation` (`num_cons`, `lib_cons`, `prix_cons`, `cat`) VALUES
 (1, 'Demi 25cl', 700, 'BIEBLA'),
@@ -384,24 +430,24 @@ INSERT INTO `consommation` (`num_cons`, `lib_cons`, `prix_cons`, `cat`) VALUES
 (3, 'Brasseur 50cl', 1000, 'BIEBLA'),
 (4, 'Formidable 100cl', 1900, 'BIEBLA'),
 (5, 'Pichet 1,5l', 3200, 'BIEBLA'),
-(6, 'Le mètre 25cl *10', 5000, 'BIEBLA'),
+(6, 'Le metre 25cl *10', 5000, 'BIEBLA'),
 (7, 'Demi 25cl', 700, 'BIEBLO'),
 (8, 'Taverne 33cl', 800, 'BIEBLO'),
 (9, 'Brasseur 50cl', 1000, 'BIEBLO'),
 (10, 'Formidable 100cl', 1900, 'BIEBLO'),
 (11, 'Pichet 1,5l', 3200, 'BIEBLO'),
-(12, 'Le mètre 25cl *10', 5000, 'BIEBLO'),
+(12, 'Le metre 25cl *10', 5000, 'BIEBLO'),
 (13, 'Demi 25cl', 700, 'BIEBLO'),
 (14, 'Taverne 33cl', 800, 'BIEBLO'),
 (15, 'Brasseur 50cl', 1000, 'BIEBLO'),
 (16, 'Formidable 100cl', 1900, 'BIEBLO'),
 (17, 'Pichet 1,5l', 3200, 'BIEBLO'),
-(18, 'Le mètre 25cl *10', 5000, 'BIEBLO'),
-(19, 'Le Panaché 25cl', 650, 'APEBIE'),
-(20, 'Le Panaché 33cl', 700, 'APEBIE'),
-(21, 'Le Panaché 50cl', 900, 'APEBIE'),
-(22, 'Le Panaché 1l', 1500, 'APEBIE'),
-(23, 'Le Panaché Pitcher', 3200, 'APEBIE'),
+(18, 'Le metre 25cl *10', 5000, 'BIEBLO'),
+(19, 'Le Panache 25cl', 650, 'APEBIE'),
+(20, 'Le Panache 33cl', 700, 'APEBIE'),
+(21, 'Le Panache 50cl', 900, 'APEBIE'),
+(22, 'Le Panache 1l', 1500, 'APEBIE'),
+(23, 'Le Panache Pitcher', 3200, 'APEBIE'),
 (24, 'Le Tango 25 cl', 700, 'APEBIE'),
 (25, 'Le Tango 33 cl', 800, 'APEBIE'),
 (26, 'Le Tango 50 cl', 1100, 'APEBIE'),
@@ -412,11 +458,11 @@ INSERT INTO `consommation` (`num_cons`, `lib_cons`, `prix_cons`, `cat`) VALUES
 (31, 'Le Monaco 50 cl', 1100, 'APEBIE'),
 (32, 'Le Monaco 1l', 1100, 'APEBIE'),
 (33, 'Le Monaco Pitcher', 3200, 'APEBIE'),
-(34, 'Picon Bière 25 cl', 1100, 'APEBIE'),
-(35, 'Picon Bière 33 cl', 1350, 'APEBIE'),
-(36, 'Picon Bière 50 cl', 1900, 'APEBIE'),
-(37, 'Picon Bière 1l', 2400, 'APEBIE'),
-(38, 'Picon Bière Pitcher', 4200, 'APEBIE'),
+(34, 'Picon Biere 25 cl', 1100, 'APEBIE'),
+(35, 'Picon Biere 33 cl', 1350, 'APEBIE'),
+(36, 'Picon Biere 50 cl', 1900, 'APEBIE'),
+(37, 'Picon Biere 1l', 2400, 'APEBIE'),
+(38, 'Picon Biere Pitcher', 4200, 'APEBIE'),
 (39, 'Le Nord Express 25 cl', 1100, 'APEBIE'),
 (40, 'Le Nord Express 33 cl', 1350, 'APEBIE'),
 (41, 'Le Nord Express 50 cl', 1900, 'APEBIE'),
@@ -432,11 +478,11 @@ INSERT INTO `consommation` (`num_cons`, `lib_cons`, `prix_cons`, `cat`) VALUES
 (52, 'Le Habana 50 cl', 1900, 'APEBIE'),
 (53, 'Le Habana 1l', 2400, 'APEBIE'),
 (54, 'Le Habana Pitcher', 4200, 'APEBIE'),
-(55, 'L\'Irlandais 25 cl', 1100, 'APEBIE'),
-(56, 'L\'Irlandais 33 cl', 1350, 'APEBIE'),
-(57, 'L\'Irlandais 50 cl', 1900, 'APEBIE'),
-(58, 'L\'Irlandais 1l', 2400, 'APEBIE'),
-(59, 'L\'Irlandais Pitcher', 4200, 'APEBIE'),
+(55, 'L Irlandais 25 cl', 1100, 'APEBIE'),
+(56, 'L Irlandais 33 cl', 1350, 'APEBIE'),
+(57, 'L Irlandais 50 cl', 1900, 'APEBIE'),
+(58, 'L Irlandais 1l', 2400, 'APEBIE'),
+(59, 'L Irlandais Pitcher', 4200, 'APEBIE'),
 (60, 'Le Boucanier 25 cl', 1100, 'APEBIE'),
 (61, 'Le Boucanier 33 cl', 1350, 'APEBIE'),
 (62, 'Le Boucanier 50 cl', 1900, 'APEBIE'),
@@ -462,7 +508,7 @@ INSERT INTO `consommation` (`num_cons`, `lib_cons`, `prix_cons`, `cat`) VALUES
 (82, 'Rhum Damoiseau 4cl', 1300, 'ALCOOL'),
 (83, 'Rhum Bacardi 4cl', 1300, 'ALCOOL'),
 (84, 'Gin Bombay 4cl', 1300, 'ALCOOL'),
-(85, 'Gin Gordon\'s 4cl', 1300, 'ALCOOL'),
+(85, 'Gin Gordon s 4cl', 1300, 'ALCOOL'),
 (86, 'Vodka Red Bull 4cl', 1500, 'ALCOOL'),
 (87, 'Pinacolada', 1500, 'COKTAI'),
 (88, 'Planteur', 1500, 'COKTAI'),
@@ -473,8 +519,8 @@ INSERT INTO `consommation` (`num_cons`, `lib_cons`, `prix_cons`, `cat`) VALUES
 (93, 'Riesling Hugel 75cl', 5500, 'LACAVE'),
 (94, 'Muscadet sur Lie 37,5cl', 2200, 'LACAVE'),
 (95, 'Muscadet sur Lie 75cl', 3900, 'LACAVE'),
-(96, 'Cristal de Provence Rosé 37,5cl', 2300, 'LACAVE'),
-(97, 'Cristal de Provence Rosé 75cl', 4200, 'LACAVE'),
+(96, 'Cristal de Provence Rose 37,5cl', 2300, 'LACAVE'),
+(97, 'Cristal de Provence Rose 75cl', 4200, 'LACAVE'),
 (98, 'Beaujolais Village Georges Duboeuf 37,5cl', 2200, 'LACAVE'),
 (99, 'Beaujolais Village Georges Duboeuf 75cl', 3800, 'LACAVE'),
 (100, 'Bordeaux Manoir du Passager 75 l', 3900, 'LACAVE'),
@@ -488,7 +534,7 @@ INSERT INTO `consommation` (`num_cons`, `lib_cons`, `prix_cons`, `cat`) VALUES
 (108, 'Les Nectars Abricot 25cl', 700, 'NECTAR'),
 (109, 'Les Nectars Tomate 25cl', 700, 'NECTAR'),
 (110, 'Coca Cola 33cl', 630, 'SODAS'),
-(111, 'Coca Zéro 33cl', 630, 'SODAS'),
+(111, 'Coca Zero 33cl', 630, 'SODAS'),
 (112, 'Orangina 33cl', 630, 'SODAS'),
 (113, 'Ice Tea 33cl', 630, 'SODAS'),
 (114, '7 Up 33cl', 630, 'SODAS'),
@@ -501,25 +547,18 @@ INSERT INTO `consommation` (`num_cons`, `lib_cons`, `prix_cons`, `cat`) VALUES
 (121, 'San Pellegrino 75cl', 850, 'EAUMIN'),
 (122, 'Perrier boîte 33cl', 630, 'EAUMIN');
 
--- --------------------------------------------------------
 
---
--- Structure de la table `facture`
---
 
 DROP TABLE IF EXISTS `facture`;
 CREATE TABLE IF NOT EXISTS `facture` (
   `num_fact` int(11) NOT NULL AUTO_INCREMENT,
   `date_fact` date DEFAULT NULL,
   `paye` tinyint(1) NOT NULL,
-  `Id_Client` int(11) NOT NULL,
+  `Id_Client` int(11) DEFAULT NULL,
   PRIMARY KEY (`num_fact`),
   KEY `facture_ibfk_1` (`Id_Client`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `facture`
---
 
 INSERT INTO `facture` (`num_fact`, `date_fact`, `paye`, `Id_Client`) VALUES
 (1, NULL, 0, 1),
@@ -527,11 +566,7 @@ INSERT INTO `facture` (`num_fact`, `date_fact`, `paye`, `Id_Client`) VALUES
 (3, NULL, 0, 3),
 (4, NULL, 0, 1);
 
--- --------------------------------------------------------
 
---
--- Structure de la table `spa`
---
 
 DROP TABLE IF EXISTS `spa`;
 CREATE TABLE IF NOT EXISTS `spa` (
@@ -543,37 +578,32 @@ CREATE TABLE IF NOT EXISTS `spa` (
   KEY `cat` (`cat`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `spa`
---
+
+
 
 INSERT INTO `spa` (`num_soin`, `lib_soin`, `prix_soin`, `cat`) VALUES
-(1, 'SOIN CONTOUR DES YEUX ÉCLAT', 6500, '1'),
-(2, 'SOIN ÉCLAT IMMÉDIAT AUX FLEURS', 9500, '2'),
-(3, 'SOIN PRODIGIEUX® À L’IMMORTELLE BLEUE', 12500, '2'),
+(1, 'SOIN CONTOUR DES YEUX eCLAT', 6500, '1'),
+(2, 'SOIN eCLAT IMMeDIAT AUX FLEURS', 9500, '2'),
+(3, 'SOIN PRODIGIEUX® a L’IMMORTELLE BLEUE', 12500, '2'),
 (4, 'SOIN EXPRESS AUX EXTRAITS D’ARBRES - Pour Homme', 9500, '1'),
-(5, 'SOIN AROMA-LACTÉ CRÈME FRAÎCHE', 13000, '3'),
+(5, 'SOIN AROMA-LACTe CReME FRAÎCHE', 13000, '3'),
 (6, 'SOIN AROMA-PERFECTION® AUX PLANTES', 13000, '3'),
-(7, 'SOIN ULTRA-RÉCONFORTANT AU MIEL', 13000, '3'),
+(7, 'SOIN ULTRA-ReCONFORTANT AU MIEL', 13000, '3'),
 (8, 'SOIN BEAU JOUEUR - Pour Homme', 13000, '3'),
-(9, 'SOIN BIO-BEAUTÉ', 13000, '3'),
+(9, 'SOIN BIO-BEAUTe', 13000, '3'),
 (10, 'SOIN NUXELLENCE', 16000, '3'),
 (11, 'SOIN NIRVANESQUE', 16000, '3'),
 (12, 'SOIN MERVEILLANCE expert', 16000, '3'),
 (13, 'ENVELOPPEMENT', 6500, '1'),
-(14, 'SOIN RÉVÉLATEUR D’ÉCLAT IMMÉDIAT', 9000, '2'),
+(14, 'SOIN ReVeLATEUR D’eCLAT IMMeDIAT', 9000, '2'),
 (15, 'SOIN «BODY RELAXANT»', 13000, '2'),
 (16, 'SOIN du dos', 14000, '3'),
 (17, 'SOIN PRODIGIEUX', 14000, '3'),
-(18, 'SOIN RÊVE DE MIEL', 15000, '3'),
-(19, 'SOIN PURETÉ DU DOS - Pour Homme', 14000, '3'),
-(20, 'SOIN RÊVERIE ORIENTALE', 18000, '4');
+(18, 'SOIN ReVE DE MIEL', 15000, '3'),
+(19, 'SOIN PURETe DU DOS - Pour Homme', 14000, '3'),
+(20, 'SOIN ReVERIE ORIENTALE', 18000, '4');
 
--- --------------------------------------------------------
 
---
--- Structure de la table `staff`
---
 
 DROP TABLE IF EXISTS `staff`;
 CREATE TABLE IF NOT EXISTS `staff` (
@@ -583,72 +613,70 @@ CREATE TABLE IF NOT EXISTS `staff` (
   PRIMARY KEY (`pseudo`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `staff`
---
+
+
 
 INSERT INTO `staff` (`pseudo`, `email`, `password`) VALUES
 ('enuez', 'eliott@test.fr', 'eliott');
 
---
--- Contraintes pour les tables déchargées
---
 
---
--- Contraintes pour la table `brasserie`
---
 ALTER TABLE `brasserie`
   ADD CONSTRAINT `brasserie_ibfk_1` FOREIGN KEY (`cat`) REFERENCES `cat_brasserie` (`cat`);
 
---
--- Contraintes pour la table `chambre`
---
+
+
+ALTER TABLE `brasserie2`
+  ADD CONSTRAINT `brasserie2_ibfk_1` FOREIGN KEY (`cat`) REFERENCES `cat_brasserie` (`cat`);
+
+
+
 ALTER TABLE `chambre`
   ADD CONSTRAINT `chambre_ibfk_1` FOREIGN KEY (`cat`) REFERENCES `cat_chambre` (`cat`);
 
---
--- Contraintes pour la table `comprend_bar`
---
+
+
 ALTER TABLE `comprend_bar`
   ADD CONSTRAINT `comprend_baribfk_1` FOREIGN KEY (`num_cons`) REFERENCES `consommation` (`num_cons`),
   ADD CONSTRAINT `comprend_baribfk_2` FOREIGN KEY (`num_fact`) REFERENCES `facture` (`num_fact`);
 
---
--- Contraintes pour la table `comprend_brasserie`
---
-ALTER TABLE `comprend_brasserie`
-  ADD CONSTRAINT `comprend_brasseriefk_1` FOREIGN KEY (`num_plat`) REFERENCES `brasserie` (`num_plat`),
-  ADD CONSTRAINT `comprend_brasseriefk_2` FOREIGN KEY (`num_fact`) REFERENCES `facture` (`num_fact`);
 
---
--- Contraintes pour la table `comprend_chambre`
---
+
+ALTER TABLE `comprend_brasserie`
+  ADD CONSTRAINT `comprend_brasseriefk_2` FOREIGN KEY (`id_service`) REFERENCES `serviceBrasserie` (`id_service`),
+  ADD CONSTRAINT `comprend_brasseriefk_3` FOREIGN KEY (`num_table`) REFERENCES `tableBrasserie` (`num_table`),
+  ADD CONSTRAINT `comprend_brasseriefk_1` FOREIGN KEY (`num_plat`) REFERENCES `brasserie` (`num_plat`);
+
+  
+
+
+ALTER TABLE `comprend_brasserie2`
+  ADD CONSTRAINT `comprend_brasserie2fk_2` FOREIGN KEY (`id_service`) REFERENCES `serviceBrasserie2` (`id_service`),
+  ADD CONSTRAINT `comprend_brasserie2fk_3` FOREIGN KEY (`num_table`) REFERENCES `tableBrasserie2` (`num_table`),
+  ADD CONSTRAINT `comprend_brasserie2fk_1` FOREIGN KEY (`num_plat`) REFERENCES `brasserie2` (`num_plat`);
+
+
+
 ALTER TABLE `comprend_chambre`
   ADD CONSTRAINT `comprend_chambrefk_1` FOREIGN KEY (`num_chambre`) REFERENCES `chambre` (`num_chambre`),
   ADD CONSTRAINT `comprend_chambrefk_2` FOREIGN KEY (`num_fact`) REFERENCES `facture` (`num_fact`);
 
---
--- Contraintes pour la table `comprend_spa`
---
+
+
 ALTER TABLE `comprend_spa`
   ADD CONSTRAINT `comprend_spafk_1` FOREIGN KEY (`num_soin`) REFERENCES `spa` (`num_soin`),
   ADD CONSTRAINT `comprend_spafk_2` FOREIGN KEY (`num_fact`) REFERENCES `facture` (`num_fact`);
 
---
--- Contraintes pour la table `consommation`
---
+
+
 ALTER TABLE `consommation`
   ADD CONSTRAINT `consommation_ibfk_1` FOREIGN KEY (`cat`) REFERENCES `cat_cons` (`cat`);
 
---
--- Contraintes pour la table `facture`
---
+
+
 ALTER TABLE `facture`
   ADD CONSTRAINT `facture_ibfk_1` FOREIGN KEY (`Id_Client`) REFERENCES `client` (`Id_Client`);
 
---
--- Contraintes pour la table `spa`
---
+
 ALTER TABLE `spa`
   ADD CONSTRAINT `spafk_1` FOREIGN KEY (`cat`) REFERENCES `cat_spa` (`cat`);
 COMMIT;
